@@ -1,4 +1,4 @@
-package com.pairlearning.expensetracker.domain;
+package com.karim.test.domain;
 
 public class Bonus {
 

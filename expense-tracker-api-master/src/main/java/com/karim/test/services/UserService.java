@@ -1,7 +1,7 @@
-package com.pairlearning.expensetracker.services;
+package com.karim.test.services;
 
-import com.pairlearning.expensetracker.domain.User;
-import com.pairlearning.expensetracker.exceptions.EtAuthException;
+import com.karim.test.domain.User;
+import com.karim.test.exceptions.EtAuthException;
 
 public interface UserService {
 

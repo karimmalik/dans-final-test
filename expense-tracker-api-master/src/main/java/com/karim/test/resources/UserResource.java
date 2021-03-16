@@ -1,8 +1,9 @@
-package com.pairlearning.expensetracker.resources;
+package com.karim.test.resources;
 
-import com.pairlearning.expensetracker.Constants;
-import com.pairlearning.expensetracker.domain.User;
-import com.pairlearning.expensetracker.services.UserService;
+import com.karim.test.Constants;
+import com.karim.test.domain.User;
+import com.karim.test.services.UserService;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;

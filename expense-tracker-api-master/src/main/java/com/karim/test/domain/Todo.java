@@ -1,3 +1,4 @@
+package com.karim.test.domain;
 //package com.pairlearning.expensetracker.domain;
 //
 //public class Todo {

@@ -1,4 +1,4 @@
-package com.pairlearning.expensetracker;
+package com.karim.test;
 
 public class Constants {
 

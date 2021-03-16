@@ -1,6 +1,5 @@
-package com.pairlearning.expensetracker;
+package com.karim.test;
 
-import com.pairlearning.expensetracker.filters.AuthFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -8,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import com.karim.test.filters.AuthFilter;
 
 @SpringBootApplication
 public class ExpenseTrackerApiApplication {

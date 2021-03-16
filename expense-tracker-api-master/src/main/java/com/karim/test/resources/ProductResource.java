@@ -1,9 +1,13 @@
-package com.pairlearning.expensetracker.resources;
+package com.karim.test.resources;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pairlearning.expensetracker.domain.Offer;
+import com.karim.test.domain.Offer;
+import com.karim.test.domain.ProductDto;
 
 @RestController
 @RequestMapping("/api/product")
 public class ProductResource {
 
 	@GetMapping("/")
-	public List<Offer> getAllProducts() {
+	public String getAllProducts() {
 		List<Offer> response = new ArrayList<Offer>();
 		
 		try {
@@ -33,22 +38,18 @@ public class ProductResource {
 			
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Map<String, List<String>>> map = mapper.readValue(result.getBody().toString(), Map.class);
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map.get("offer")));
-			Map<String, List<String>> innerMap = map.get("offer");
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map.get("offer")));
+//			Map<String, List<String>> innerMap = map.get("offer");
 			
-			for (Entry<String, List<String>> entry : innerMap.entrySet()) {
-				String key = entry.getKey();
-				List<String> value = entry.getValue();
-				Offer offer = new Offer();
-				
-				response.add(offer);
-			}
+			String offersString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map.get("offer"));
+			
+			return offersString;
 		
 		} catch (Exception e) {
 		System.out.println("exc : " + e);
 		}
 		    
-		return response;
+		return null;
 	}
 	
 }

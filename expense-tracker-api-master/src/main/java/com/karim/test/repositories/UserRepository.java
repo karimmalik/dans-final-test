@@ -1,9 +1,9 @@
-package com.pairlearning.expensetracker.repositories;
+package com.karim.test.repositories;
 
 import java.util.Date;
 
-import com.pairlearning.expensetracker.domain.User;
-import com.pairlearning.expensetracker.exceptions.EtAuthException;
+import com.karim.test.domain.User;
+import com.karim.test.exceptions.EtAuthException;
 
 public interface UserRepository {
 

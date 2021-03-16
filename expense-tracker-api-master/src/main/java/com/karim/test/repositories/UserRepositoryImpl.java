@@ -1,7 +1,8 @@
-package com.pairlearning.expensetracker.repositories;
+package com.karim.test.repositories;
 
-import com.pairlearning.expensetracker.domain.User;
-import com.pairlearning.expensetracker.exceptions.EtAuthException;
+import com.karim.test.domain.User;
+import com.karim.test.exceptions.EtAuthException;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;

@@ -1,8 +1,9 @@
-package com.pairlearning.expensetracker.services;
+package com.karim.test.services;
 
-import com.pairlearning.expensetracker.domain.User;
-import com.pairlearning.expensetracker.exceptions.EtAuthException;
-import com.pairlearning.expensetracker.repositories.UserRepository;
+import com.karim.test.domain.User;
+import com.karim.test.exceptions.EtAuthException;
+import com.karim.test.repositories.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

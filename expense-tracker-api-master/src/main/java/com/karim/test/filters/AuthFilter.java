@@ -1,10 +1,11 @@
-package com.pairlearning.expensetracker.filters;
+package com.karim.test.filters;
 
-import com.pairlearning.expensetracker.Constants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.GenericFilterBean;
+
+import com.karim.test.Constants;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
