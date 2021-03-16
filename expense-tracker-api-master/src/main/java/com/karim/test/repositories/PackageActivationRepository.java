@@ -1,4 +1,4 @@
-package com.karim.test.services;
+package com.karim.test.repositories;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,9 +12,8 @@ import org.springframework.stereotype.Repository;
 import com.karim.test.domain.PackageActivationRequest;
 
 @Repository
-public class InitiaitePackageActivationService {
-	
-    @Autowired
+public class PackageActivationRepository {
+	@Autowired
     private RedisTemplate template;
 
     public static final String HASH_KEY = "Product";
@@ -24,7 +23,7 @@ public class InitiaitePackageActivationService {
     	String stringUuid = uuid.toString();
     	
     	product.setToken(stringUuid);
-        template.opsForHash().put(product.getToken(),"Product",product);
+        template.opsForHash().put(product.getToken(), product.getToken(),product);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
     
@@ -32,7 +31,7 @@ public class InitiaitePackageActivationService {
         return template.opsForHash().values(HASH_KEY);
     }
 
-    public PackageActivationRequest findProductById(int id){
+    public PackageActivationRequest findProductById(String id){
         return (PackageActivationRequest) template.opsForHash().get(HASH_KEY,id);
     }
 
@@ -40,5 +39,4 @@ public class InitiaitePackageActivationService {
          template.opsForHash().delete(HASH_KEY,id);
         return "product removed !!";
     }
-	
 }
