@@ -3,13 +3,13 @@ public class ProductDto {
 	
 	private Long id;
 	private String name;
-	private int price;
+	private Long price;
 	
 	public ProductDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductDto(Long id, String name, int price) {
+	public ProductDto(Long id, String name, Long price) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -47,14 +47,14 @@ public class ProductDto {
 	/**
 	 * @return the price
 	 */
-	public int getPrice() {
+	public Long getPrice() {
 		return price;
 	}
 
 	/**
 	 * @param price the price to set
 	 */
-	public void setPrice(int price) {
+	public void setPrice(Long price) {
 		this.price = price;
 	}
 
@@ -62,6 +62,8 @@ public class ProductDto {
 	public String toString() {
 		return "ProductDto [id=" + id + ", name=" + name + ", price=" + price + "]";
 	}
+
+	
 
 	
 	
