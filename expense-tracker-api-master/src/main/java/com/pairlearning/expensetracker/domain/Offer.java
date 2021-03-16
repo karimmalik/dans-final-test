@@ -1,6 +1,6 @@
 package com.pairlearning.expensetracker.domain;
 
-public class Offer2 {
+public class Offer {
 
 	private Long id;
 	private String name;
@@ -23,11 +23,11 @@ public class Offer2 {
 	private String product_family;
 	private Bonus bonus;
 	
-	public Offer2() {
+	public Offer() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Offer2(Long id, String name, String highlight, String menu_id, String short_desc, String long_desc,
+	public Offer(Long id, String name, String highlight, String menu_id, String short_desc, String long_desc,
 			String stock_type, String terms, long price, int transfer_price, boolean campaign_flag,
 			String product_length, int offer_priority, String promotional_flag, String category, String subcategory,
 			int adn, String tag, String product_family, Bonus bonus) {
