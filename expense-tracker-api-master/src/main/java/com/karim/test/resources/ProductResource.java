@@ -17,17 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.karim.test.domain.Bonus;
 import com.karim.test.domain.Offer;
 import com.karim.test.domain.ProductDto;
-import com.karim.test.domain.price_list;
 
 @RestController
 @RequestMapping("/api/product")
 public class ProductResource {
 
 	@GetMapping("/getAllProducts")
-	public List<ProductDto> getAllProducts() {
+	public String getAllProducts() {
 		List<Offer> response = new ArrayList<Offer>();
 		
 		try {
@@ -43,32 +41,9 @@ public class ProductResource {
 //			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map.get("offer")));
 //			Map<String, List<String>> innerMap = map.get("offer");
 			
-			List<Map<String, List<String>>> offers = (List<Map<String, List<String>>>) map.get("offer");
-			List<ProductDto> productDtoList= new ArrayList<ProductDto>();
-			for(int i=0; i<offers.size(); i++) {
-				ProductDto productDto = new ProductDto();
-			
-				List list = new ArrayList<>();
-				list.add(offers.get(i).get("id"));
-				list.add(offers.get(i).get("name"));
-				list.add(offers.get(i).get("price"));
-				
-				String id = list.get(0).toString();
-				String name = list.get(1).toString();
-				String price = list.get(2).toString();
-				
-				productDto.setId(Long.parseLong(id));
-				productDto.setName(name);
-				productDto.setPrice(Long.parseLong(price));
-				
-				productDtoList.add(productDto);
-
-				
-			}
-			
 			String offersString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map.get("offer"));
 			
-			return productDtoList;
+			return offersString;
 		
 		} catch (Exception e) {
 		System.out.println("exc : " + e);

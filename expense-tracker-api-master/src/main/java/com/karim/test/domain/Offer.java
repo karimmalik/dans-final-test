@@ -1,53 +1,27 @@
 package com.karim.test.domain;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Offer {
 
-	
 	private Long id;
-	
 	private String name;
-	
 	private String highlight;
-	
 	private String menu_id;
-	
 	private String short_desc;
-	
 	private String long_desc;
-	
 	private String stock_type;
-	
 	private String terms;
-	
 	private long price;
-	
 	private int transfer_price;
-	
 	private boolean campaign_flag;
-	
 	private String product_length;
-	
 	private int offer_priority;
-	
 	private String promotional_flag;
-	
 	private String category;
-	
 	private String subcategory;
-	
 	private int adn;
-	
 	private String tag;
-	
 	private String product_family;
-	@JsonIgnore
-	private List<Bonus> bonus;
-	@JsonIgnore
-	private price_list price_List;
+	private Bonus bonus;
 	
 	public Offer() {
 		// TODO Auto-generated constructor stub
@@ -56,7 +30,7 @@ public class Offer {
 	public Offer(Long id, String name, String highlight, String menu_id, String short_desc, String long_desc,
 			String stock_type, String terms, long price, int transfer_price, boolean campaign_flag,
 			String product_length, int offer_priority, String promotional_flag, String category, String subcategory,
-			int adn, String tag, String product_family, List<Bonus> bonus, price_list price_List) {
+			int adn, String tag, String product_family, Bonus bonus) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -78,7 +52,6 @@ public class Offer {
 		this.tag = tag;
 		this.product_family = product_family;
 		this.bonus = bonus;
-		this.price_List = price_List;
 	}
 
 	/**
@@ -350,38 +323,26 @@ public class Offer {
 	/**
 	 * @return the bonus
 	 */
-	public List<Bonus> getBonus() {
+	public Bonus getBonus() {
 		return bonus;
 	}
 
 	/**
 	 * @param bonus the bonus to set
 	 */
-	public void setBonus(List<Bonus> bonus) {
+	public void setBonus(Bonus bonus) {
 		this.bonus = bonus;
 	}
 
-	/**
-	 * @return the price_List
-	 */
-	public price_list getPrice_List() {
-		return price_List;
+	@Override
+	public String toString() {
+		return "Offer2 [id=" + id + ", name=" + name + ", highlight=" + highlight + ", menu_id=" + menu_id
+				+ ", short_desc=" + short_desc + ", long_desc=" + long_desc + ", stock_type=" + stock_type + ", terms="
+				+ terms + ", price=" + price + ", transfer_price=" + transfer_price + ", campaign_flag=" + campaign_flag
+				+ ", product_length=" + product_length + ", offer_priority=" + offer_priority + ", promotional_flag="
+				+ promotional_flag + ", category=" + category + ", subcategory=" + subcategory + ", adn=" + adn
+				+ ", tag=" + tag + ", product_family=" + product_family + "]";
 	}
-
-	/**
-	 * @param price_List the price_List to set
-	 */
-	public void setPrice_List(price_list price_List) {
-		this.price_List = price_List;
-	}
-
-	
-
-	
-
-	
-
-	
 	
 	
 }
