@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class InitiatePackageActivationRequest implements Serializable{
+public class PackageActivationRequest implements Serializable{
 
 	/**
 	 * 
@@ -16,11 +16,11 @@ public class InitiatePackageActivationRequest implements Serializable{
 	private String msisdn;
 	private String productId;
 	
-	public InitiatePackageActivationRequest() {
+	public PackageActivationRequest() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public InitiatePackageActivationRequest(String token, String msisdn, String productId) {
+	public PackageActivationRequest(String token, String msisdn, String productId) {
 		super();
 		this.token = token;
 		this.msisdn = msisdn;

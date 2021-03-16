@@ -1,15 +1,17 @@
 package com.karim.test.domain;
 
-public class InitiatePackageActivationResponse {
+import org.springframework.http.HttpStatus;
+
+public class PackageActivationResponse {
 
 	private String token;
-	private String status;
+	private HttpStatus status;
 	
-	public InitiatePackageActivationResponse() {
+	public PackageActivationResponse() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public InitiatePackageActivationResponse(String token, String status) {
+	public PackageActivationResponse(String token, HttpStatus status) {
 		super();
 		this.token = token;
 		this.status = status;
@@ -32,14 +34,14 @@ public class InitiatePackageActivationResponse {
 	/**
 	 * @return the status
 	 */
-	public String getStatus() {
+	public HttpStatus getStatus() {
 		return status;
 	}
 
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(HttpStatus status) {
 		this.status = status;
 	}
 	

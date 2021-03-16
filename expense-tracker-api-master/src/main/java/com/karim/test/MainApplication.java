@@ -19,37 +19,37 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import com.karim.test.domain.InitiatePackageActivationRequest;
-import com.karim.test.domain.InitiatePackageActivationResponse;
+import com.karim.test.domain.PackageActivationRequest;
+import com.karim.test.domain.PackageActivationResponse;
 import com.karim.test.filters.AuthFilter;
 import com.karim.test.services.InitiaitePackageActivationService;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("/product")
+//@RequestMapping("/product")
 public class MainApplication {
 	
-	@Autowired
-	InitiaitePackageActivationService service;
-	
-	@PostMapping
-    public ResponseEntity<InitiatePackageActivationRequest> save(@RequestBody InitiatePackageActivationRequest product) {
-        return service.save(product);
-    }
-
-    @GetMapping
-    public List<InitiatePackageActivationRequest> getAllProducts() {
-        return service.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public InitiatePackageActivationRequest findProduct(@PathVariable int id) {
-        return service.findProductById(id);
-    }
-    @DeleteMapping("/{id}")
-    public String remove(@PathVariable int id)   {
-    	return service.deleteProduct(id);
-	}
+//	@Autowired
+//	InitiaitePackageActivationService service;
+//	
+//	@PostMapping
+//    public ResponseEntity<PackageActivationRequest> save(@RequestBody PackageActivationRequest product) {
+//        return service.save(product);
+//    }
+//
+//    @GetMapping
+//    public List<PackageActivationRequest> getAllProducts() {
+//        return service.findAll();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public PackageActivationRequest findProduct(@PathVariable int id) {
+//        return service.findProductById(id);
+//    }
+//    @DeleteMapping("/{id}")
+//    public String remove(@PathVariable int id)   {
+//    	return service.deleteProduct(id);
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(MainApplication.class, args);

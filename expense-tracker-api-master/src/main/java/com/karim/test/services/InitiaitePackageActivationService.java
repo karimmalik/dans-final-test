@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
-import com.karim.test.domain.InitiatePackageActivationRequest;
+import com.karim.test.domain.PackageActivationRequest;
 
 @Repository
 public class InitiaitePackageActivationService {
@@ -19,22 +19,22 @@ public class InitiaitePackageActivationService {
 
     public static final String HASH_KEY = "Product";
     
-    public ResponseEntity<InitiatePackageActivationRequest> save(InitiatePackageActivationRequest product){
+    public ResponseEntity<PackageActivationRequest> save(PackageActivationRequest product){
     	UUID uuid = UUID.randomUUID();
     	String stringUuid = uuid.toString();
+    	
     	product.setToken(stringUuid);
-        template.opsForHash().put(HASH_KEY,product.getToken(),product);
+        template.opsForHash().put(product.getToken(),"Product",product);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
     
-    public List<InitiatePackageActivationRequest> findAll(){
+    public List<PackageActivationRequest> findAll(){
         return template.opsForHash().values(HASH_KEY);
     }
 
-    public InitiatePackageActivationRequest findProductById(int id){
-        return (InitiatePackageActivationRequest) template.opsForHash().get(HASH_KEY,id);
+    public PackageActivationRequest findProductById(int id){
+        return (PackageActivationRequest) template.opsForHash().get(HASH_KEY,id);
     }
-
 
     public String deleteProduct(int id){
          template.opsForHash().delete(HASH_KEY,id);
