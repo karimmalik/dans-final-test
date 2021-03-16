@@ -24,7 +24,7 @@ import com.karim.test.domain.ProductDto;
 @RequestMapping("/api/product")
 public class ProductResource {
 
-	@GetMapping("/")
+	@GetMapping("/getAllProducts")
 	public String getAllProducts() {
 		List<Offer> response = new ArrayList<Offer>();
 		

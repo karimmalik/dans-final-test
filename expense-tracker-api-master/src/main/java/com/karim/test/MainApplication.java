@@ -11,10 +11,10 @@ import org.springframework.web.filter.CorsFilter;
 import com.karim.test.filters.AuthFilter;
 
 @SpringBootApplication
-public class ExpenseTrackerApiApplication {
+public class MainApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExpenseTrackerApiApplication.class, args);
+		SpringApplication.run(MainApplication.class, args);
 	}
 
 	@Bean
@@ -35,7 +35,7 @@ public class ExpenseTrackerApiApplication {
 		FilterRegistrationBean<AuthFilter> registrationBean = new FilterRegistrationBean<>();
 		AuthFilter authFilter = new AuthFilter();
 		registrationBean.setFilter(authFilter);
-		registrationBean.addUrlPatterns("/api/product*");
+		registrationBean.addUrlPatterns("/api/product/*");
 		return registrationBean;
 	}
 
