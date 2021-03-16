@@ -1,15 +1,15 @@
 package com.karim.test.domain;
 public class ProductDto {
 	
-	private Long id;
+	private String id;
 	private String name;
-	private int price;
+	private String price;
 	
 	public ProductDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductDto(Long id, String name, int price) {
+	public ProductDto(String id, String name, String price) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -19,14 +19,14 @@ public class ProductDto {
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -47,14 +47,14 @@ public class ProductDto {
 	/**
 	 * @return the price
 	 */
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
 	/**
 	 * @param price the price to set
 	 */
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 

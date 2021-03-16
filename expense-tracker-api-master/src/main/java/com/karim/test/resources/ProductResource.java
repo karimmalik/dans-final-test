@@ -10,7 +10,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.AbstractClientHttpResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +27,7 @@ import com.karim.test.domain.ProductDto;
 public class ProductResource {
 
 	@GetMapping("/getAllProducts")
-	public String getAllProducts() {
+	public List<ProductDto> getAllProducts() {
 		List<Offer> response = new ArrayList<Offer>();
 		
 		try {
@@ -41,9 +43,35 @@ public class ProductResource {
 //			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map.get("offer")));
 //			Map<String, List<String>> innerMap = map.get("offer");
 			
-			String offersString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map.get("offer"));
+//			String offersString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map.get("offer"));
+//			
+//			return offersString;
 			
-			return offersString;
+			List<Map<String, List<String>>> offers = (List<Map<String, List<String>>>) map.get("offer");
+			List<ProductDto> productDtoList= new ArrayList<ProductDto>();
+			for(int i=0; i<offers.size(); i++) {
+				ProductDto productDto = new ProductDto();
+			
+				List list = new ArrayList<>();
+				list.add(offers.get(i).get("id"));
+				list.add(offers.get(i).get("name"));
+				list.add(offers.get(i).get("price"));
+				
+				String id = list.get(0).toString();
+				String name = list.get(1).toString();
+				String price = list.get(2).toString();
+				
+//				productDto.setId(Integer.parseInt(id));
+				productDto.setId(id);
+				productDto.setName(name);
+//				productDto.setPrice(Long.parseLong(price));
+				productDto.setPrice(price);
+				
+				productDtoList.add(productDto);
+				
+				
+			}
+			return productDtoList;
 		
 		} catch (Exception e) {
 		System.out.println("exc : " + e);
