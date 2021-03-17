@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.google.gson.Gson;
 import com.karim.test.dto.PackageActivationConfirmationRequest2Dto;
 import com.karim.test.dto.PackageActivationConfirmationRequestDto;
@@ -69,7 +71,7 @@ public class PackageActivationResource {
     }
     
     @PostMapping("/confirmation2")
-    public ResponseEntity<ResponseDto> activationSpecification2(@RequestBody PackageActivationConfirmationRequestDto request) {
+    public ResponseEntity<ResponseDto> activationSpecification2(@RequestBody PackageActivationConfirmationRequestDto request) throws JsonMappingException, JsonProcessingException {
     	return activationService.confirmation2(request);    
     }  
 	

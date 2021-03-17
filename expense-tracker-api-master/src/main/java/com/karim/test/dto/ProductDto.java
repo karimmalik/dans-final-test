@@ -43,12 +43,14 @@ public class ProductDto implements Serializable {
 	public void setPrice(String price) {
 		this.price = price;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "ProductDto [id=" + id + ", name=" + name + ", price=" + price + "]";
-	}
-
-	
+		return "{ "
+				+ "id : " + id + ","
+				+ "name : " + name + "," 
+				+ "price : " + price
+				+ "}";
+	}	
 	
 }

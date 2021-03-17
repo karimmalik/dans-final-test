@@ -2,8 +2,6 @@ package com.karim.test.dto;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class PackageActivationRequestDto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -49,8 +47,11 @@ public class PackageActivationRequestDto implements Serializable{
 
 	@Override
 	public String toString() {
-		return "InitiatePackageActivationRequest [token=" + token + ", msisdn=" + msisdn + ", productId=" + productId
-				+ "]";
+		return "{ "
+				+ "token : " + token + ","
+				+ "msisdn : " + msisdn + "," 
+				+ "productId : " + productId
+				+ "}";
 	}	
 	
 }

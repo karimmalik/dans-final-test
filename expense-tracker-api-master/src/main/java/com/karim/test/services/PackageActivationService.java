@@ -1,5 +1,6 @@
 package com.karim.test.services;
 
+import java.io.StringReader;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Iterator;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import com.karim.test.dto.PackageActivationConfirmationRequest2Dto;
 import com.karim.test.dto.PackageActivationConfirmationRequestDto;
 import com.karim.test.dto.PackageActivationRequestDto;
@@ -81,19 +83,21 @@ public class PackageActivationService {
 		request2.setProductId("00019179");
 		request2.setPin("123123");
 		
-		List<ProductDto> productDtos = template.opsForHash().values(Constants.PRODUCT);
-		List<PackageActivationRequestDto> packageDtos = template.opsForHash().values(Constants.PACKAGEACTIVATION);		
+//		List<ProductDto> productDtos = template.opsForHash().values(Constants.PRODUCT);
 		
-		for(int i=0; i<productDtos.size(); i++) {
-			System.out.println(productDtos.get(i));
-			String x = productDtos.get(i).toString();
-		}
+		Gson gsonPackage = new Gson();
+		String packageActivationDtoString = template.opsForHash().get(Constants.PACKAGEACTIVATION, request.getToken()).toString();
+		System.out.println(packageActivationDtoString);
+		PackageActivationRequestDto packageDto = gsonPackage.fromJson(packageActivationDtoString, PackageActivationRequestDto.class);
 		
+		Gson gsonProduct = new Gson();
+		String productDtoString = template.opsForHash().get(Constants.PRODUCT, packageDto.getProductId()).toString();
+		System.out.println(productDtoString);
+		ProductDto productDto = gsonProduct.fromJson(productDtoString, ProductDto.class);
 		
+		Gson gsonActiveResponse = new Gson();
 		String result = restTemplate.postForObject( url, request2, String.class);
-		
-		Gson gson = new Gson();
-		ActivationResponse confirmationResponse = gson.fromJson(result, ActivationResponse.class);
+		ActivationResponse confirmationResponse = gsonActiveResponse.fromJson(result, ActivationResponse.class);
 		
     	System.out.println(result);
 		ResponseDto response = new ResponseDto();
