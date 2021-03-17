@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.karim.test.Constants;
 import com.karim.test.domain.Offer;
 import com.karim.test.domain.ProductDto;
 
@@ -30,7 +31,7 @@ public class ProductResource {
 	@Autowired
     private RedisTemplate template;
 	
-    public static final String HASH_KEY = "Product";
+    
 	
 	@GetMapping("/getAllProducts")
 	public List<ProductDto> getAllProducts() {
@@ -67,13 +68,11 @@ public class ProductResource {
 				String name = list.get(1).toString();
 				String price = list.get(2).toString();
 				
-//				productDto.setId(Integer.parseInt(id));
 				productDto.setId(id);
 				productDto.setName(name);
-//				productDto.setPrice(Long.parseLong(price));
 				productDto.setPrice(price);
 				
-				template.opsForHash().put(HASH_KEY, productDto.getId(),productDto);
+				template.opsForHash().put(Constants.HASH_KEY, productDto.getId(),productDto);
 				
 				productDtoList.add(productDto);
 				

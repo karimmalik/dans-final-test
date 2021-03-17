@@ -27,21 +27,11 @@ public class UserResource {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> loginUser(@RequestBody Map<String, Object> userMap) {
-        String login_code = (String) userMap.get("login_code");
+        String login_code = (String) userMap.get("username");
         String password = (String) userMap.get("password");
         User user = userService.validateUser(login_code, password);
         return new ResponseEntity<>(generateJWTToken(user), HttpStatus.OK);
     }
-
-//    @PostMapping("/register")
-//    public ResponseEntity<Map<String, String>> registerUser(@RequestBody Map<String, Object> userMap) {
-//        String firstName = (String) userMap.get("firstName");
-//        String lastName = (String) userMap.get("lastName");
-//        String email = (String) userMap.get("email");
-//        String password = (String) userMap.get("password");
-//        User user = userService.registerUser(firstName, lastName, email, password);
-//        return new ResponseEntity<>(generateJWTToken(user), HttpStatus.OK);
-//    }
 
     private Map<String, String> generateJWTToken(User user) {
         long timestamp = System.currentTimeMillis();

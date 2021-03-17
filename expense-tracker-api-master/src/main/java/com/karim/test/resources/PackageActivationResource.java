@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.gson.Gson;
 import com.karim.test.domain.PackageActivationConfirmationRequest;
 import com.karim.test.domain.PackageActivationConfirmationRequest2;
 import com.karim.test.domain.PackageActivationRequest;
@@ -42,9 +43,7 @@ public class PackageActivationResource {
 	
 	@Autowired
 	public RedisTemplate template;
-	
-	public static final String PRODUCT = "packageActivation";
-	
+		
 	@Autowired
 	PackageActivationRepository service;
 	
@@ -52,11 +51,10 @@ public class PackageActivationResource {
     private final RestTemplate restTemplate;
 	
 	public PackageActivationResource(RestTemplateBuilder restTemplateBuilder) {
-        // set connection and read timeouts
         this.restTemplate = restTemplateBuilder
-                .setConnectTimeout(Duration.ofSeconds(500))
-                .setReadTimeout(Duration.ofSeconds(500))
-                .build();
+        .setConnectTimeout(Duration.ofSeconds(500))
+        .setReadTimeout(Duration.ofSeconds(500))
+        .build();
     }
 
 	@PostMapping
@@ -99,6 +97,7 @@ public class PackageActivationResource {
 	      request2.setProductId("00019179");
 	      request2.setPin("123123");
 
+	      
 
         // build the request
         HttpEntity<PackageActivationConfirmationRequest2> entity = new HttpEntity<>(request2, headers);
@@ -123,31 +122,18 @@ public class PackageActivationResource {
 		request2.setProductId("00019179");
 		request2.setPin("123123");
 		
+		
+		
 		String result = restTemplate.postForObject( url, request2, String.class);
+		
+		Gson gson = new Gson();
+		PackageConfirmationResponse confirmationResponse = gson.fromJson(result, PackageConfirmationResponse.class);
+//		System.out.println(confirmationResponse);
+		
     	System.out.println(result);
 		Response response = new Response();
 		response.setStatus(HttpStatus.OK);
     	return new ResponseEntity<>(response, HttpStatus.OK);
     }
-	
-//	@PostMapping("")
-//	public ResponseEntity<PackageActivationResponse> packageActivation(@RequestBody PackageActivationRequest request) {
-//		UUID uuid = UUID.randomUUID();
-//		int variant = uuid.variant();
-//		String strUuid = uuid.toString();
-//		
-//		template.opsForHash().put(variant, variant, request);
-//		PackageActivationResponse response = new PackageActivationResponse();
-//		response.setToken(strUuid);
-//		response.setStatus(HttpStatus.OK);
-//		
-//		return new ResponseEntity<>(response, HttpStatus.OK);
-//		
-//	}
-	
-//	public Product save(Product product) {
-//		template.opsForHash().put(PRODUCT, product.getId(),product);
-//		return product;
-//	}
 	
 }

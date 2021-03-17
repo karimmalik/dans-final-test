@@ -23,8 +23,8 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String SQL_COUNT_BY_EMAIL = "SELECT COUNT(*) FROM ET_USERS WHERE EMAIL = ?";
     private static final String SQL_FIND_BY_ID = "SELECT USER_ID, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD " +
             "FROM ET_USERS WHERE USER_ID = ?";
-    private static final String SQL_FIND_BY_EMAIL = "SELECT id, name, login_code, password, created_at, created_by, updated_at, updated_by " +
-            "FROM USER WHERE login_code = ?";
+    private static final String SQL_FIND_BY_EMAIL = "SELECT id, name, login_code, password, created_at, created_by, updated_at, updated_by, username " +
+            "FROM USER WHERE username = ?";
 
     @Autowired
     JdbcTemplate jdbcTemplate;
