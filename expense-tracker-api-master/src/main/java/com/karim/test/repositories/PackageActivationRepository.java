@@ -10,17 +10,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.karim.test.Constants;
-import com.karim.test.domain.PackageActivationRequest;
+import com.karim.test.dto.PackageActivationRequestDto;
 
 @Repository
 public class PackageActivationRepository {
-	
 
-	
 	@Autowired
     private RedisTemplate template;
 	
-    public ResponseEntity<PackageActivationRequest> save(PackageActivationRequest product){
+    // digunakan menyimpan data package
+	// digunakan ketika melakukan initiate package activation
+    public ResponseEntity<PackageActivationRequestDto> save(PackageActivationRequestDto product){
     	UUID uuid = UUID.randomUUID();
     	String stringUuid = uuid.toString();
     	product.setToken(stringUuid);
@@ -29,16 +29,14 @@ public class PackageActivationRepository {
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
     
-    public List<PackageActivationRequest> findAll(){
+    // digunakan mencari data package 
+    public List<PackageActivationRequestDto> findAll(){
         return template.opsForHash().values(Constants.HASH_KEY);
     }
 
-    public PackageActivationRequest findProductById(String id){
-        return (PackageActivationRequest) template.opsForHash().get(Constants.HASH_KEY,id);
+    // digunakan mencari data package detail
+    public PackageActivationRequestDto findProductById(String id){
+        return (PackageActivationRequestDto) template.opsForHash().get(Constants.HASH_KEY,id);
     }
 
-    public String deleteProduct(int id){
-         template.opsForHash().delete(Constants.HASH_KEY,id);
-        return "product removed !!";
-    }
 }

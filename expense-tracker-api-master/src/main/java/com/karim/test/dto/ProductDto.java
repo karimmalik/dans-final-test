@@ -1,20 +1,16 @@
-package com.karim.test.domain;
+package com.karim.test.dto;
 
 import java.io.Serializable;
 
 public class ProductDto implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+ 	private static final long serialVersionUID = 1L;
 	
 	private String id;
 	private String name;
 	private String price;
 	
 	public ProductDto() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public ProductDto(String id, String name, String price) {
@@ -24,44 +20,26 @@ public class ProductDto implements Serializable {
 		this.price = price;
 	}
 
-	/**
-	 * @return the id
-	 */
 	public String getId() {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name the name to set
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the price
-	 */
 	public String getPrice() {
 		return price;
 	}
 
-	/**
-	 * @param price the price to set
-	 */
 	public void setPrice(String price) {
 		this.price = price;
 	}

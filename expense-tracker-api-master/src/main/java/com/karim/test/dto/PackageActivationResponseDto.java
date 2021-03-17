@@ -1,50 +1,36 @@
-package com.karim.test.domain;
+package com.karim.test.dto;
 
 import org.springframework.http.HttpStatus;
 
-public class PackageActivationResponse {
+public class PackageActivationResponseDto {
 
 	private String token;
 	private HttpStatus status;
 	
-	public PackageActivationResponse() {
-		// TODO Auto-generated constructor stub
+	public PackageActivationResponseDto() {
+
 	}
 
-	public PackageActivationResponse(String token, HttpStatus status) {
+	public PackageActivationResponseDto(String token, HttpStatus status) {
 		super();
 		this.token = token;
 		this.status = status;
 	}
 
-	/**
-	 * @return the token
-	 */
 	public String getToken() {
 		return token;
 	}
 
-	/**
-	 * @param token the token to set
-	 */
 	public void setToken(String token) {
 		this.token = token;
 	}
 
-	/**
-	 * @return the status
-	 */
 	public HttpStatus getStatus() {
 		return status;
 	}
 
-	/**
-	 * @param status the status to set
-	 */
 	public void setStatus(HttpStatus status) {
 		this.status = status;
 	}
-	
-	
-	
+
 }

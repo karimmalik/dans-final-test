@@ -21,8 +21,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import com.karim.test.domain.PackageActivationRequest;
-import com.karim.test.domain.PackageActivationResponse;
+import com.karim.test.dto.PackageActivationRequestDto;
+import com.karim.test.dto.PackageActivationResponseDto;
 import com.karim.test.filters.AuthFilter;
 import com.karim.test.resources.PackageActivationResource;
 import com.karim.test.services.PackageActivationService;

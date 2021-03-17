@@ -22,17 +22,5 @@ public class UserServiceImpl implements UserService {
         if(login_code != null) login_code = login_code.toLowerCase();
         return userRepository.findByEmailAndPassword(login_code, password);
     }
-
-//    @Override
-//    public User registerUser(String firstName, String lastName, String email, String password) throws EtAuthException {
-//        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
-//        if(email != null) email = email.toLowerCase();
-//        if(!pattern.matcher(email).matches())
-//            throw new EtAuthException("Invalid email format");
-//        Integer count = userRepository.getCountByEmail(email);
-//        if(count > 0)
-//            throw new EtAuthException("Email already in use");
-//        Integer userId = userRepository.create(firstName, lastName, email, password);
-//        return userRepository.findById(userId);
-//    }
+    
 }

@@ -29,34 +29,6 @@ public class UserRepositoryImpl implements UserRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-//    @Override
-//    public Integer create(Long id, String name, String login_code, String password, Date created_at, Long created_by,
-//			Date updated_at, Long updated_by) throws EtAuthException {
-//        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
-//        try {
-//            KeyHolder keyHolder = new GeneratedKeyHolder();
-//            jdbcTemplate.update(connection -> {
-//                PreparedStatement ps = connection.prepareStatement(SQL_CREATE, Statement.RETURN_GENERATED_KEYS);
-////                ps.setString(1, firstName);
-////                ps.setString(2, lastName);
-////                ps.setString(3, email);
-////                ps.setString(4, hashedPassword);
-//                
-//                ps.setString(1, name);
-//                ps.setString(2, login_code);
-//                ps.setString(3, password);
-//                ps.setDate(4, created_at);
-//                ps.setLong(5, created_by);
-//	            ps.setDate(6, updated_at);
-//				ps.setLong(7, updated_by);
-//                return ps;
-//            }, keyHolder);
-//            return (Integer) keyHolder.getKeys().get("USER_ID");
-//        }catch (Exception e) {
-//            throw new EtAuthException("Invalid details. Failed to create account");
-//        }
-//    }
-
     @Override
     public User findByEmailAndPassword(String login_code, String password) throws EtAuthException {
         try {
@@ -67,16 +39,6 @@ public class UserRepositoryImpl implements UserRepository {
         }catch (EmptyResultDataAccessException e) {
             throw new EtAuthException("Invalid email/password");
         }
-    }
-
-    @Override
-    public Integer getCountByEmail(String email) {
-        return jdbcTemplate.queryForObject(SQL_COUNT_BY_EMAIL, new Object[]{email}, Integer.class);
-    }
-
-    @Override
-    public User findById(Integer userId) {
-        return jdbcTemplate.queryForObject(SQL_FIND_BY_ID, new Object[]{userId}, userRowMapper);
     }
 
     private RowMapper<User> userRowMapper = ((rs, rowNum) -> {

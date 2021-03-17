@@ -24,12 +24,7 @@ public class PackageResource {
 	
 	@GetMapping("/package/{id}")
 	public PackageActivation retrieveEmployeeId(@PathVariable Long id) {
-		// TODO Auto-generated method stub
-		// get the employee detail by empNo
-		Optional<com.karim.test.domain.PackageActivation> packageDetail = repository.findById(id);
-		
-		// return the data from above
+		Optional<PackageActivation> packageDetail = repository.findById(id);
 		return packageDetail.get();
-	}
-	
+	}	
 }

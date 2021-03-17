@@ -1,34 +1,27 @@
-package com.karim.test.domain;
+package com.karim.test.dto;
 
 import org.springframework.http.HttpStatus;
 
-public class Response {
+public class ResponseDto {
 
 	private HttpStatus status;
 	
-	public Response() {
-		// TODO Auto-generated constructor stub
+	public ResponseDto() {
+
 	}
 
-	public Response(HttpStatus status) {
+	public ResponseDto(HttpStatus status) {
 		super();
 		this.status = status;
 	}
 
-	/**
-	 * @return the status
-	 */
+
 	public HttpStatus getStatus() {
 		return status;
 	}
 
-	/**
-	 * @param status the status to set
-	 */
 	public void setStatus(HttpStatus status) {
 		this.status = status;
 	}
-	
-	
 	
 }

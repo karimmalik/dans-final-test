@@ -1,6 +1,9 @@
 package com.karim.test.domain;
 
-public class Transaction {
+import java.io.Serializable;
+
+public class Transaction implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	private String transaction_id;
 	private String channel;
@@ -8,7 +11,7 @@ public class Transaction {
 	private String status_desc;
 
 	public Transaction() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Transaction(String transaction_id, String channel, String status_code, String status_desc) {
@@ -19,62 +22,37 @@ public class Transaction {
 		this.status_desc = status_desc;
 	}
 
-	/**
-	 * @return the transaction_id
-	 */
 	public String getTransaction_id() {
 		return transaction_id;
 	}
 
-	/**
-	 * @param transaction_id the transaction_id to set
-	 */
 	public void setTransaction_id(String transaction_id) {
 		this.transaction_id = transaction_id;
 	}
 
-	/**
-	 * @return the channel
-	 */
 	public String getChannel() {
 		return channel;
 	}
 
-	/**
-	 * @param channel the channel to set
-	 */
 	public void setChannel(String channel) {
 		this.channel = channel;
 	}
 
-	/**
-	 * @return the status_code
-	 */
+
 	public String getStatus_code() {
 		return status_code;
 	}
 
-	/**
-	 * @param status_code the status_code to set
-	 */
 	public void setStatus_code(String status_code) {
 		this.status_code = status_code;
 	}
 
-	/**
-	 * @return the status_desc
-	 */
 	public String getStatus_desc() {
 		return status_desc;
 	}
 
-	/**
-	 * @param status_desc the status_desc to set
-	 */
 	public void setStatus_desc(String status_desc) {
 		this.status_desc = status_desc;
 	}
-	
-	
-	
+
 }

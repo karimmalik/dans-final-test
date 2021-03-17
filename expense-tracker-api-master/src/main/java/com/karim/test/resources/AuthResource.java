@@ -19,13 +19,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/users")
-public class UserResource {
+@RequestMapping("/api/auth")
+public class AuthResource {
 
     @Autowired
     UserService userService;
 
-    @PostMapping("/login")
+    @PostMapping("/")
     public ResponseEntity<Map<String, String>> loginUser(@RequestBody Map<String, Object> userMap) {
         String login_code = (String) userMap.get("username");
         String password = (String) userMap.get("password");

@@ -26,20 +26,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
-import com.karim.test.domain.PackageActivationConfirmationRequest;
-import com.karim.test.domain.PackageActivationConfirmationRequest2;
-import com.karim.test.domain.PackageActivationRequest;
-import com.karim.test.domain.PackageActivationResponse;
-import com.karim.test.domain.PackageConfirmationResponse;
-import com.karim.test.domain.Response;
+import com.karim.test.dto.PackageActivationConfirmationRequest2Dto;
+import com.karim.test.dto.PackageActivationConfirmationRequestDto;
+import com.karim.test.dto.PackageActivationRequestDto;
+import com.karim.test.dto.PackageActivationResponseDto;
+import com.karim.test.dto.ResponseDto;
+import com.karim.test.dto.ActivationResponse;
 import com.karim.test.repositories.PackageActivationRepository;
 import com.karim.test.services.PackageActivationService;
 
 @RestController
 @RequestMapping("api/package-activation")
 public class PackageActivationResource {
-	
-	static Logger log = Logger.getLogger(PackageActivationResource.class.getName());
 	
 	@Autowired
 	public RedisTemplate template;
@@ -48,92 +46,31 @@ public class PackageActivationResource {
 	PackageActivationRepository service;
 	
 	@Autowired
-    private final RestTemplate restTemplate;
-	
-	public PackageActivationResource(RestTemplateBuilder restTemplateBuilder) {
-        this.restTemplate = restTemplateBuilder
-        .setConnectTimeout(Duration.ofSeconds(500))
-        .setReadTimeout(Duration.ofSeconds(500))
-        .build();
-    }
+	PackageActivationService activationService;
 
 	@PostMapping
-    public ResponseEntity<PackageActivationRequest> save(@RequestBody PackageActivationRequest product) {
+    public ResponseEntity<PackageActivationRequestDto> save(@RequestBody PackageActivationRequestDto product) {
         return service.save(product);
     }
 
     @GetMapping
-    public List<PackageActivationRequest> getAllProducts() {
+    public List<PackageActivationRequestDto> getAllProducts() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public PackageActivationRequest findProduct(@PathVariable String id) {
+    public PackageActivationRequestDto findProduct(@PathVariable String id) {
         return service.findProductById(id);
     }
     
     @PostMapping("/confirmation")
-    public ResponseEntity<Response> activationSpecification(@RequestBody PackageActivationConfirmationRequest request) {
-        String url = "http://dev3.dansmultipro.co.id/mock/sit-web/secure/esb/v1/order/reseller";
-
-        // create headers
-        HttpHeaders headers = new HttpHeaders();
-        // set `content-type` header
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        // set `accept` header
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-
-        PackageActivationRequest activationRequest = new PackageActivationRequest();
-//        activationRequest = service.findProductById(request.getToken());
-        
-        // create a request object
-//        PackageActivationConfirmationRequest2 request2 = new PackageActivationConfirmationRequest2();
-//        request2.setMsisdn(activationRequest.getMsisdn());
-//        request2.setProductId(activationRequest.getProductId());
-//        request2.setPin(request.getPin());
-
-	      PackageActivationConfirmationRequest2 request2 = new PackageActivationConfirmationRequest2();
-	      request2.setMsisdn("081317180456");
-	      request2.setProductId("00019179");
-	      request2.setPin("123123");
-
-	      
-
-        // build the request
-        HttpEntity<PackageActivationConfirmationRequest2> entity = new HttpEntity<>(request2, headers);
-
-        // send POST request
-        restTemplate.postForObject(url, entity, PackageConfirmationResponse.class);
-        
-        Response response = new Response();
-        response.setStatus(HttpStatus.OK);
-        
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    public ResponseEntity<ResponseDto> activationSpecification(@RequestBody PackageActivationConfirmationRequestDto request) {
+    	return activationService.confirmation(request);      
     }
     
     @PostMapping("/confirmation2")
-    public ResponseEntity<Response> activationSpecification2(@RequestBody PackageActivationConfirmationRequest request) {
-    	
-    	String url = "http://dev3.dansmultipro.co.id/mock/sit-web/secure/esb/v1/order/reseller";
-    	RestTemplate restTemplate = new RestTemplate();
-    	
-    	PackageActivationConfirmationRequest2 request2 = new PackageActivationConfirmationRequest2();
-		request2.setMsisdn("081317180456");
-		request2.setProductId("00019179");
-		request2.setPin("123123");
-		
-		
-		
-		String result = restTemplate.postForObject( url, request2, String.class);
-		
-		Gson gson = new Gson();
-		PackageConfirmationResponse confirmationResponse = gson.fromJson(result, PackageConfirmationResponse.class);
-//		System.out.println(confirmationResponse);
-		
-    	System.out.println(result);
-		Response response = new Response();
-		response.setStatus(HttpStatus.OK);
-    	return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+    public ResponseEntity<ResponseDto> activationSpecification2(@RequestBody PackageActivationConfirmationRequestDto request) {
+    	return activationService.confirmation2(request);    
+    }  
 	
 }
