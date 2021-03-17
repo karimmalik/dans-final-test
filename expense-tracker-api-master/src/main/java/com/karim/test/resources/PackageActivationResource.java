@@ -111,7 +111,24 @@ public class PackageActivationResource {
         
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
+    
+    @PostMapping("/confirmation2")
+    public ResponseEntity<Response> activationSpecification2(@RequestBody PackageActivationConfirmationRequest request) {
+    	
+    	String url = "http://dev3.dansmultipro.co.id/mock/sit-web/secure/esb/v1/order/reseller";
+    	RestTemplate restTemplate = new RestTemplate();
+    	
+    	PackageActivationConfirmationRequest2 request2 = new PackageActivationConfirmationRequest2();
+		request2.setMsisdn("081317180456");
+		request2.setProductId("00019179");
+		request2.setPin("123123");
+		
+		String result = restTemplate.postForObject( url, request2, String.class);
+    	
+		Response response = new Response();
+		response.setStatus(HttpStatus.OK);
+    	return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 	
 //	@PostMapping("")
 //	public ResponseEntity<PackageActivationResponse> packageActivation(@RequestBody PackageActivationRequest request) {
