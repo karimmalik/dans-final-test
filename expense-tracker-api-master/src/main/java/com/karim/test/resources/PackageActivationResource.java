@@ -124,7 +124,7 @@ public class PackageActivationResource {
 		request2.setPin("123123");
 		
 		String result = restTemplate.postForObject( url, request2, String.class);
-    	
+    	System.out.println(result);
 		Response response = new Response();
 		response.setStatus(HttpStatus.OK);
     	return new ResponseEntity<>(response, HttpStatus.OK);

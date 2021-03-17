@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.AbstractClientHttpResponse;
@@ -26,6 +27,11 @@ import com.karim.test.domain.ProductDto;
 @RequestMapping("/api/product")
 public class ProductResource {
 
+	@Autowired
+    private RedisTemplate template;
+	
+    public static final String HASH_KEY = "Product";
+	
 	@GetMapping("/getAllProducts")
 	public List<ProductDto> getAllProducts() {
 		List<Offer> response = new ArrayList<Offer>();
@@ -67,10 +73,15 @@ public class ProductResource {
 //				productDto.setPrice(Long.parseLong(price));
 				productDto.setPrice(price);
 				
+				template.opsForHash().put(HASH_KEY, productDto.getId(),productDto);
+				
 				productDtoList.add(productDto);
 				
 				
 			}
+			
+			
+			
 			return productDtoList;
 		
 		} catch (Exception e) {

@@ -28,8 +28,6 @@ import com.karim.test.resources.PackageActivationResource;
 import com.karim.test.services.PackageActivationService;
 
 @SpringBootApplication
-@RestController
-//@RequestMapping("/product")
 public class MainApplication {
 	
 //	@Autowired
