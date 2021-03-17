@@ -2,67 +2,79 @@ package com.karim.test.domain;
 
 public class Transaction {
 
-    private Integer transactionId;
-    private Integer categoryId;
-    private Integer userId;
-    private Double amount;
-    private String note;
-    private Long transactionDate;
+	private String transaction_id;
+	private String channel;
+	private String status_code;
+	private String status_desc;
 
-    public Transaction(Integer transactionId, Integer categoryId, Integer userId, Double amount, String note, Long transactionDate) {
-        this.transactionId = transactionId;
-        this.categoryId = categoryId;
-        this.userId = userId;
-        this.amount = amount;
-        this.note = note;
-        this.transactionDate = transactionDate;
-    }
+	public Transaction() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public Integer getTransactionId() {
-        return transactionId;
-    }
+	public Transaction(String transaction_id, String channel, String status_code, String status_desc) {
+		super();
+		this.transaction_id = transaction_id;
+		this.channel = channel;
+		this.status_code = status_code;
+		this.status_desc = status_desc;
+	}
 
-    public void setTransactionId(Integer transactionId) {
-        this.transactionId = transactionId;
-    }
+	/**
+	 * @return the transaction_id
+	 */
+	public String getTransaction_id() {
+		return transaction_id;
+	}
 
-    public Integer getCategoryId() {
-        return categoryId;
-    }
+	/**
+	 * @param transaction_id the transaction_id to set
+	 */
+	public void setTransaction_id(String transaction_id) {
+		this.transaction_id = transaction_id;
+	}
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
+	/**
+	 * @return the channel
+	 */
+	public String getChannel() {
+		return channel;
+	}
 
-    public Integer getUserId() {
-        return userId;
-    }
+	/**
+	 * @param channel the channel to set
+	 */
+	public void setChannel(String channel) {
+		this.channel = channel;
+	}
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	/**
+	 * @return the status_code
+	 */
+	public String getStatus_code() {
+		return status_code;
+	}
 
-    public Double getAmount() {
-        return amount;
-    }
+	/**
+	 * @param status_code the status_code to set
+	 */
+	public void setStatus_code(String status_code) {
+		this.status_code = status_code;
+	}
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
+	/**
+	 * @return the status_desc
+	 */
+	public String getStatus_desc() {
+		return status_desc;
+	}
 
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public Long getTransactionDate() {
-        return transactionDate;
-    }
-
-    public void setTransactionDate(Long transactionDate) {
-        this.transactionDate = transactionDate;
-    }
+	/**
+	 * @param status_desc the status_desc to set
+	 */
+	public void setStatus_desc(String status_desc) {
+		this.status_desc = status_desc;
+	}
+	
+	
+	
 }

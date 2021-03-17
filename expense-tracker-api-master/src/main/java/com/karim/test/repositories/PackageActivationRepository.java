@@ -23,7 +23,8 @@ public class PackageActivationRepository {
     	String stringUuid = uuid.toString();
     	
     	product.setToken(stringUuid);
-        template.opsForHash().put(product.getToken(), product.getToken(),product);
+//        template.opsForHash().put(product.getToken(), product.getToken(),product);
+        template.opsForHash().put(HASH_KEY, product.getToken(),product);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
     
