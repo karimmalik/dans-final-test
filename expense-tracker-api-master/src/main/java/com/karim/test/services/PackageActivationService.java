@@ -2,6 +2,7 @@ package com.karim.test.services;
 
 import java.time.Duration;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +22,9 @@ import com.google.gson.Gson;
 import com.karim.test.dto.PackageActivationConfirmationRequest2Dto;
 import com.karim.test.dto.PackageActivationConfirmationRequestDto;
 import com.karim.test.dto.PackageActivationRequestDto;
+import com.karim.test.dto.ProductDto;
 import com.karim.test.dto.ResponseDto;
+import com.karim.test.Constants;
 import com.karim.test.dto.ActivationResponse;
 
 @Service
@@ -29,6 +32,9 @@ public class PackageActivationService {
    
 	@Autowired
     private final RestTemplate restTemplate;
+	
+    @Autowired
+    private RedisTemplate template;
 	
 	public PackageActivationService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder
@@ -74,6 +80,15 @@ public class PackageActivationService {
 		request2.setMsisdn("081317180456");
 		request2.setProductId("00019179");
 		request2.setPin("123123");
+		
+		List<ProductDto> productDtos = template.opsForHash().values(Constants.PRODUCT);
+		List<PackageActivationRequestDto> packageDtos = template.opsForHash().values(Constants.PACKAGEACTIVATION);		
+		
+		for(int i=0; i<productDtos.size(); i++) {
+			System.out.println(productDtos.get(i));
+			String x = productDtos.get(i).toString();
+		}
+		
 		
 		String result = restTemplate.postForObject( url, request2, String.class);
 		

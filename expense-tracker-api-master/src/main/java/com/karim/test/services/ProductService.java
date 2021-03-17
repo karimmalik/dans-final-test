@@ -53,7 +53,7 @@ public class ProductService {
 				productDto.setName(name);
 				productDto.setPrice(price);
 				
-				template.opsForHash().put(Constants.HASH_KEY, productDto.getId(),productDto);
+				template.opsForHash().put(Constants.PRODUCT, productDto.getId(),productDto);
 				productDtoList.add(productDto);
 
 			}

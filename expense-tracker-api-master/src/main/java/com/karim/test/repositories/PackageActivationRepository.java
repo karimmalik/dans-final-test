@@ -25,18 +25,20 @@ public class PackageActivationRepository {
     	String stringUuid = uuid.toString();
     	product.setToken(stringUuid);
     	
-        template.opsForHash().put(Constants.HASH_KEY, product.getToken(),product);
+        template.opsForHash().put(Constants.PACKAGEACTIVATION, product.getToken(),product);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
     
     // digunakan mencari data package 
     public List<PackageActivationRequestDto> findAll(){
-        return template.opsForHash().values(Constants.HASH_KEY);
+        return template.opsForHash().values(Constants.PACKAGEACTIVATION);
     }
 
     // digunakan mencari data package detail
     public PackageActivationRequestDto findProductById(String id){
-        return (PackageActivationRequestDto) template.opsForHash().get(Constants.HASH_KEY,id);
+    	PackageActivationRequestDto packageDto = new PackageActivationRequestDto();
+    	packageDto.setToken(id);
+        return (PackageActivationRequestDto) template.opsForHash().get(Constants.PACKAGEACTIVATION,packageDto.getToken());
     }
 
 }
