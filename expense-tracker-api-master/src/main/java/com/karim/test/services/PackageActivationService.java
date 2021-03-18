@@ -1,8 +1,10 @@
 package com.karim.test.services;
 
 import java.io.StringReader;
+import java.text.Format.Field;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +21,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.karim.test.dto.PackageActivationConfirmationRequest2Dto;
@@ -26,12 +31,18 @@ import com.karim.test.dto.PackageActivationConfirmationRequestDto;
 import com.karim.test.dto.PackageActivationRequestDto;
 import com.karim.test.dto.ProductDto;
 import com.karim.test.dto.ResponseDto;
+import com.karim.test.dto.TransactionHistoryDto;
+import com.karim.test.repositories.TransactionHistoryRepository;
 import com.karim.test.Constants;
+import com.karim.test.domain.PackageActivation;
 import com.karim.test.dto.ActivationResponse;
 
 @Service
 public class PackageActivationService {
    
+	@Autowired
+	TransactionHistoryRepository repository;
+	
 	@Autowired
     private final RestTemplate restTemplate;
 	
@@ -74,7 +85,7 @@ public class PackageActivationService {
         return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
-	public ResponseEntity<ResponseDto> confirmation2(PackageActivationConfirmationRequestDto request){
+	public ResponseEntity<ResponseDto> confirmation2(PackageActivationConfirmationRequestDto request) throws NoSuchFieldException, SecurityException, JsonProcessingException{
 		String url = "http://dev3.dansmultipro.co.id/mock/sit-web/secure/esb/v1/order/reseller";
     	RestTemplate restTemplate = new RestTemplate();
     	
@@ -87,18 +98,31 @@ public class PackageActivationService {
 		
 		Gson gsonPackage = new Gson();
 		String packageActivationDtoString = template.opsForHash().get(Constants.PACKAGEACTIVATION, request.getToken()).toString();
-		System.out.println(packageActivationDtoString);
 		PackageActivationRequestDto packageDto = gsonPackage.fromJson(packageActivationDtoString, PackageActivationRequestDto.class);
 		
 		Gson gsonProduct = new Gson();
-		String productDtoString = template.opsForHash().get(Constants.PRODUCT, packageDto.getProductId()).toString();
-		System.out.println(productDtoString);
-		ProductDto productDto = gsonProduct.fromJson(productDtoString, ProductDto.class);
+		ProductDto productDto = (ProductDto) template.opsForHash().get(Constants.PRODUCT, packageDto.getProductId());
 		
 		Gson gsonActiveResponse = new Gson();
 		String result = restTemplate.postForObject( url, request2, String.class);
 		ActivationResponse confirmationResponse = gsonActiveResponse.fromJson(result, ActivationResponse.class);
+			
+		Date date = new Date();
+		String strDate = date.toString();
 		
+		PackageActivation transDto = new PackageActivation();
+		transDto.setTransaction_id(confirmationResponse.getTransaction().getTransaction_id());
+		transDto.setMsisdn(packageDto.getMsisdn());
+		transDto.setProduct_id(productDto.getId());
+		transDto.setProduct_name(productDto.getName());
+		transDto.setProduct_price(productDto.getPrice());
+		transDto.setCreated_at(strDate);
+		transDto.setCreated_by(6);
+		transDto.setUpdated_at(strDate);
+		transDto.setUpdated_by(6);
+		repository.save(transDto);
+		
+
     	System.out.println(result);
 		ResponseDto response = new ResponseDto();
 		response.setStatus(HttpStatus.OK);

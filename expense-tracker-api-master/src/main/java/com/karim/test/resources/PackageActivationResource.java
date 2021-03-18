@@ -71,7 +71,7 @@ public class PackageActivationResource {
     }
     
     @PostMapping("/confirmation2")
-    public ResponseEntity<ResponseDto> activationSpecification2(@RequestBody PackageActivationConfirmationRequestDto request) throws JsonMappingException, JsonProcessingException {
+    public ResponseEntity<ResponseDto> activationSpecification2(@RequestBody PackageActivationConfirmationRequestDto request) throws JsonMappingException, JsonProcessingException, NoSuchFieldException, SecurityException {
     	return activationService.confirmation2(request);    
     }  
 	

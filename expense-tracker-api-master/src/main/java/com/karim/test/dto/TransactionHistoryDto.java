@@ -1,5 +1,10 @@
 package com.karim.test.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 public class TransactionHistoryDto {
 
 	private long activationId;
