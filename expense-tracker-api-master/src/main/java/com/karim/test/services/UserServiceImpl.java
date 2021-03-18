@@ -10,17 +10,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.regex.Pattern;
 
-@Service
-@Transactional
-public class UserServiceImpl implements UserService {
+//@Service
+//@Transactional
+//public class UserServiceImpl implements UserService {
+public class UserServiceImpl  {
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Override
-    public User validateUser(String login_code, String password) throws EtAuthException {
-        if(login_code != null) login_code = login_code.toLowerCase();
-        return userRepository.findByEmailAndPassword(login_code, password);
-    }
+//    @Autowired
+//    UserRepository userRepository;
+//
+//    @Override
+//    public User validateUser(String login_code, String password) throws EtAuthException {
+//        if(login_code != null) login_code = login_code.toLowerCase();
+//        return userRepository.findByEmailAndPassword(login_code, password);
+//    }
     
 }

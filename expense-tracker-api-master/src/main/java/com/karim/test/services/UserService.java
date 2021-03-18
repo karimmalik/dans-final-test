@@ -5,6 +5,6 @@ import com.karim.test.exceptions.EtAuthException;
 
 public interface UserService {
 
-    User validateUser(String login_code, String password) throws EtAuthException;
+//    User validateUser(String login_code, String password) throws EtAuthException;
 
 }

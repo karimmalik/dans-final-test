@@ -7,7 +7,7 @@ import com.karim.test.exceptions.EtAuthException;
 
 public interface UserRepository {
 	
-	// digunakan ketika login
-    User findByEmailAndPassword(String email, String password) throws EtAuthException;
+//	  digunakan ketika login
+//    User findByEmailAndPassword(String email, String password) throws EtAuthException;
 
 }

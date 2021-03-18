@@ -29,34 +29,6 @@ import com.karim.test.services.PackageActivationService;
 
 @SpringBootApplication
 public class MainApplication {
-	
-//	@Autowired
-//	InitiaitePackageActivationService service;
-//	
-//	@PostMapping
-//    public ResponseEntity<PackageActivationRequest> save(@RequestBody PackageActivationRequest product) {
-//        return service.save(product);
-//    }
-//
-//    @GetMapping
-//    public List<PackageActivationRequest> getAllProducts() {
-//        return service.findAll();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public PackageActivationRequest findProduct(@PathVariable int id) {
-//        return service.findProductById(id);
-//    }
-//    @DeleteMapping("/{id}")
-//    public String remove(@PathVariable int id)   {
-//    	return service.deleteProduct(id);
-//	}
-
-    private PackageActivationResource restService;
-
-//    public MainApplication(PackageActivationResource restService) {
-//        this.restService = restService;
-//    }
     
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -68,27 +40,27 @@ public class MainApplication {
 		SpringApplication.run(MainApplication.class, args);
 	}
 
-	@Bean
-	public FilterRegistrationBean<CorsFilter> corsFilter() {
-		FilterRegistrationBean<CorsFilter> registrationBean = new FilterRegistrationBean<>();
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		CorsConfiguration config = new CorsConfiguration();
-		config.addAllowedOrigin("*");
-		config.addAllowedHeader("*");
-		source.registerCorsConfiguration("/**", config);
-		registrationBean.setFilter(new CorsFilter(source));
-		registrationBean.setOrder(0);
-		return registrationBean;
-	}
-	
-
-	@Bean
-	public FilterRegistrationBean<AuthFilter> filterRegistrationBean() {
-		FilterRegistrationBean<AuthFilter> registrationBean = new FilterRegistrationBean<>();
-		AuthFilter authFilter = new AuthFilter();
-		registrationBean.setFilter(authFilter);
-		registrationBean.addUrlPatterns("/api/product/*", "/api/package-activation/*", "/api/transaction/*");
-		return registrationBean;
-	}
+//	@Bean
+//	public FilterRegistrationBean<CorsFilter> corsFilter() {
+//		FilterRegistrationBean<CorsFilter> registrationBean = new FilterRegistrationBean<>();
+//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//		CorsConfiguration config = new CorsConfiguration();
+//		config.addAllowedOrigin("*");
+//		config.addAllowedHeader("*");
+//		source.registerCorsConfiguration("/**", config);
+//		registrationBean.setFilter(new CorsFilter(source));
+//		registrationBean.setOrder(0);
+//		return registrationBean;
+//	}
+//	
+//
+//	@Bean
+//	public FilterRegistrationBean<AuthFilter> filterRegistrationBean() {
+//		FilterRegistrationBean<AuthFilter> registrationBean = new FilterRegistrationBean<>();
+//		AuthFilter authFilter = new AuthFilter();
+//		registrationBean.setFilter(authFilter);
+//		registrationBean.addUrlPatterns("/api/product/*", "/api/package-activation/*", "/api/transaction/*");
+//		return registrationBean;
+//	}
 
 }
