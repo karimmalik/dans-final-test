@@ -80,13 +80,14 @@ public class MainApplication {
 		registrationBean.setOrder(0);
 		return registrationBean;
 	}
+	
 
 	@Bean
 	public FilterRegistrationBean<AuthFilter> filterRegistrationBean() {
 		FilterRegistrationBean<AuthFilter> registrationBean = new FilterRegistrationBean<>();
 		AuthFilter authFilter = new AuthFilter();
 		registrationBean.setFilter(authFilter);
-		registrationBean.addUrlPatterns("/api/product/*");
+		registrationBean.addUrlPatterns("/api/product/*", "/api/package-activation/*", "/api/transaction/*");
 		return registrationBean;
 	}
 
