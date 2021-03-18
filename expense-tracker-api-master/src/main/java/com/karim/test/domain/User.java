@@ -9,6 +9,7 @@ public class User implements Serializable{
 	private Long id;
 	private String name;
 	private String login_code;
+	private String username;
 	private String password;
 	private Date created_at;
 	private Long created_by;
@@ -19,11 +20,13 @@ public class User implements Serializable{
 
 	}
 
-	public User(Long id, String name, String login_code, String password, Date created_at, Long created_by, Date updated_at, Long updated_by) {
+	public User(Long id, String name, String login_code, String username, String password, Date created_at,
+			Long created_by, Date updated_at, Long updated_by) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.login_code = login_code;
+		this.username = username;
 		this.password = password;
 		this.created_at = created_at;
 		this.created_by = created_by;
@@ -53,6 +56,14 @@ public class User implements Serializable{
 
 	public void setLogin_code(String login_code) {
 		this.login_code = login_code;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -94,5 +105,11 @@ public class User implements Serializable{
 	public void setUpdated_by(Long updated_by) {
 		this.updated_by = updated_by;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 	
 }
