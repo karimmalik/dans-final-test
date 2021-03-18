@@ -45,6 +45,7 @@ public class UserRepositoryImpl implements UserRepository {
         return new User(rs.getLong("id"),
                 rs.getString("name"),
                 rs.getString("login_code"),
+                rs.getString("username"),
                 rs.getString("password"),
                 rs.getDate("created_at"),
                 rs.getLong("created_by"),
